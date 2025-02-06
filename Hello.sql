@@ -144,6 +144,8 @@ with the category name, subcategory name and
 the total sales amount order by category name. */
 SELECT
 	DP.EnglishProductName,
+	DPS.EnglishProductSubcategoryName AS 'Subcategory',
+	DPC.EnglishProductCategoryName AS 'Category',
 	SUM(FIS.UnitPrice * FIS.OrderQuantity) AS Total
 FROM 
 	FactInternetSales AS FIS
@@ -151,7 +153,17 @@ LEFT JOIN
 	DimProduct AS DP
 ON 
 	FIS.ProductKey = DP.ProductKey
+LEFT JOIN
+	DimProductSubcategory AS DPS
+ON
+	DP.ProductSubcategoryKey = DPS.ProductSubcategoryKey
+LEFT JOIN
+	DimProductCategory AS DPC
+ON
+	DPS.ProductCategoryKey = DPC.ProductCategoryKey
 GROUP BY
-	DP.EnglishProductName
+	DP.EnglishProductName,
+	DPS.EnglishProductSubcategoryName,
+	DPC.EnglishProductCategoryName
 ORDER BY
-	Total DESC
+	Category DESC
