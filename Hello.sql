@@ -60,3 +60,8 @@ WHERE CustomerKey = (
 	SELECT CustomerKey FROM DimCustomer WHERE FirstName = 'John' AND LastName = 'Smith'
 	)
 
+-- Get all products with a weight greater than 10 pounds (Weight > 10) from the [dbo].[DimProduct] table.
+SELECT *
+FROM DimProduct
+WHERE Weight > 10 AND WeightUnitMeasureCode = 'LB'
+
