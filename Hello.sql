@@ -65,3 +65,22 @@ SELECT *
 FROM DimProduct
 WHERE Weight > 10 AND WeightUnitMeasureCode = 'LB'
 
+-- Get the top 5 products with the lowest list prices from the [dbo]. [DimProduct] table.
+SELECT 
+	TOP 10 *
+FROM
+	DimProduct
+WHERE
+	ListPrice IS NOT NULL
+ORDER BY
+	ListPrice
+
+
+-- Retrieve the 10 oldest orders from the [dbo].[FactInternetSales] table, sorted by the order date in ascending order.
+SELECT 
+	TOP 10 *
+FROM
+	FactInternetSales
+ORDER BY
+	OrderDate
+
