@@ -102,3 +102,22 @@ UPDATE DimEmployee
 SET Title = 'Software Engineer'
 WHERE EmployeeKey = 101
 
+-- Retrieve all products that have been ordered by customer 'John Smith' (FirstName = John' and LastName = Smith').
+SELECT 
+	 ProductKey, EnglishProductName, color, Size
+FROM 
+	DimProduct 
+WHERE 
+	ProductKey IN ( 
+		SELECT 
+			ProductKey 
+		FROM 
+			FactInternetSales 
+		WHERE CustomerKey IN ( 
+			SELECT 
+				CustomerKey 
+			FROM 
+				DimCustomer 
+			WHERE 
+				FirstName = 'John' AND LastName = 'Smith'))
+
