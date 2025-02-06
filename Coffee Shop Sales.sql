@@ -16,7 +16,20 @@ ORDER BY
 
 /* 📌 Task 2: Best-Selling Product Category per Month
 I want to know which product category sells the most each month. Can you determine the best-selling category per month based on total quantity sold? */
-  
+SELECT 
+	product_category AS [Product Category],
+	SUM(transaction_qty * unit_price) AS [Revenue],
+	FORMAT(transaction_date, 'yyyy') AS [Year],
+	FORMAT(transaction_date, 'MM') AS [Month],
+	RANK() OVER(PARTITION BY FORMAT(transaction_date, 'MM'),FORMAT(transaction_date, 'yyyy') ORDER BY SUM(transaction_qty * unit_price) DESC) AS Rank
+FROM 
+	CoffeeShopTransactions
+GROUP BY
+	product_category,
+	FORMAT(transaction_date, 'yyyy'),
+	FORMAT(transaction_date, 'MM')
+ORDER BY
+	FORMAT(transaction_date, 'yyyy'), FORMAT(transaction_date, 'MM')
 
 /* 📌 Task 3: Monthly Revenue Growth by Store
 We need to identify which stores are growing and which are struggling. Can you calculate the month-over-month revenue growth for each store?*/
