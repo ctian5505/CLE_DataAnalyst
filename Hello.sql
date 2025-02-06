@@ -136,3 +136,22 @@ ON
 	FIS.CustomerKey = DC.CustomerKey
 WHERE
 	OrderDate >= '2014-01-01'
+
+/*Calculate the total sales amount for each product
+category from the dbo.DimProduct and
+dbo.FactInternetSales tables. Display the results
+with the category name, subcategory name and
+the total sales amount order by category name. */
+SELECT
+	DP.EnglishProductName,
+	SUM(FIS.UnitPrice * FIS.OrderQuantity) AS Total
+FROM 
+	FactInternetSales AS FIS
+LEFT JOIN 
+	DimProduct AS DP
+ON 
+	FIS.ProductKey = DP.ProductKey
+GROUP BY
+	DP.EnglishProductName
+ORDER BY
+	Total DESC
