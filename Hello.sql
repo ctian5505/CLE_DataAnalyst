@@ -167,3 +167,27 @@ GROUP BY
 	DPC.EnglishProductCategoryName
 ORDER BY
 	Category DESC
+
+/*Retrieve the top 5 customers with the highest total
+purchases from the [dbo].[DimCustomer] and
+[dbo].[FactInternetSales] tables. Display
+customer details along with their total purchases.
+
+TOP 5 Customer highest total pruchase and display customer details
+Customer name and total purchase
+
+*/
+
+SELECT
+	TOP 5
+	CONCAT(DC.FirstName,' ',DC.LastName,' ',DC.MiddleName) AS 'Customer_Full_Name',
+	SUM(FIS.UnitPrice*OrderQuantity) AS Total_Purchase
+FROM FactInternetSales AS FIS
+LEFT JOIN
+DimCustomer AS DC
+ON
+	FIS.CustomerKey = DC.CustomerKey
+GROUP BY
+	CONCAT(DC.FirstName,' ',DC.LastName,' ',DC.MiddleName)
+ORDER BY
+	Total_Purchase DESC
