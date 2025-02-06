@@ -84,3 +84,21 @@ FROM
 ORDER BY
 	OrderDate
 
+/*
+Insert a new product with the following details into the [dbo].[DimProduct] table:
+ProductKey: 9999
+EnglishProduct Name : DSA Training
+Color: Gold'
+Size: 'XXL'
+ListPrice: 49.99
+*/
+
+INSERT INTO DimProduct(ProductKey, EnglishProductName,Size, Color, ListPrice)
+VALUES (9999, 'DSA Training','XXL','Gold', 49.99)
+
+
+-- Update the job Title of the employee with EmployeelD 101 in the [dbo].[DimEmployee] table to 'Software Engineer.' [Production Technician - WC45 to Software Engineer ]
+UPDATE DimEmployee
+SET Title = 'Software Engineer'
+WHERE EmployeeKey = 101
+
