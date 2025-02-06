@@ -21,16 +21,11 @@ FROM
 	sys.tables
 
 
-
-
--- Retrieve the first 500 products from the product table.
-
-/*
+-- Retrieve the first 5 products from the product table.
 SELECT  
-	TOP 500 * 
+	TOP 5 * 
 FROM 
 DimProduct
-*/
 
 
 -- Get the top 10 employees from the employee along with their job titles
@@ -41,3 +36,4 @@ SELECT
 	Title AS 'Job Title'
 FROM 
 	DimEmployee
+
