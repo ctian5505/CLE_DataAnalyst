@@ -13,3 +13,9 @@ SELECT
 	EmailAddress	
 FROM 
 	DimCustomer
+
+ -- Query to display the list of tables inside the database
+SELECT
+	*
+FROM
+	sys.tables
