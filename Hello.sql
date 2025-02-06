@@ -37,3 +37,26 @@ SELECT
 FROM 
 	DimEmployee
 
+-- Retrieve all orders placed by customer 'John Smith' (FirstName = 'John' and LastName = 'Smith') from the [dbo].[FactInternetSales] table.
+
+	-- Using Left Join
+SELECT 
+	*
+FROM 
+	FactInternetSales AS FIS
+LEFT JOIN 
+	DimCustomer AS DC
+ON 
+	FIS.CustomerKey = DC.CustomerKey
+WHERE 
+	DC.FirstName = 'John' AND DC.LastName = 'Smith'
+
+	-- Using Subquery
+SELECT 
+	*
+FROM 
+	FactInternetSales
+WHERE CustomerKey = (
+	SELECT CustomerKey FROM DimCustomer WHERE FirstName = 'John' AND LastName = 'Smith'
+	)
+
