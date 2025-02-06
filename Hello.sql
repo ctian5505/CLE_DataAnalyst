@@ -191,3 +191,25 @@ GROUP BY
 	CONCAT(DC.FirstName,' ',DC.LastName,' ',DC.MiddleName)
 ORDER BY
 	Total_Purchase DESC
+
+/*Find the average quantity and total sales amount
+of products sold in each month of the year 2011
+from the [dbo].[DimProduct] and
+[dbo].FactResellerSales tables. 
+*/
+SELECT
+	MONTH(FRS.OrderDate) AS 'Month_no',
+	AVG(OrderQuantity) AS 'Average Quantity',
+	AVG(SalesAmount) AS 'Average Sales'
+FROM	
+	FactResellerSales AS FRS
+LEFT JOIN
+	DimProduct AS DP
+ON
+	FRS.ProductKey = DP.ProductKey
+WHERE 
+	YEAR(OrderDate) = '2011'
+GROUP BY
+	MONTH(FRS.OrderDate)
+ORDER BY
+	Month_no
