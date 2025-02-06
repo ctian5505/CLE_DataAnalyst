@@ -19,3 +19,25 @@ SELECT
 	*
 FROM
 	sys.tables
+
+
+
+
+-- Retrieve the first 500 products from the product table.
+
+/*
+SELECT  
+	TOP 500 * 
+FROM 
+DimProduct
+*/
+
+
+-- Get the top 10 employees from the employee along with their job titles
+SELECT 
+	TOP 10
+	EmployeeKey,
+	CONCAT(FirstName,' ',MiddleName,' ',LastName) AS Fullname,
+	Title AS 'Job Title'
+FROM 
+	DimEmployee
