@@ -121,3 +121,18 @@ WHERE
 			WHERE 
 				FirstName = 'John' AND LastName = 'Smith'))
 
+-- Retrieve all orders along with customer details for orders placed on or after January 1, 2014, from the dbo.FactinternetSales and dimCustomer tables.
+SELECT 
+	ProductKey, 
+	OrderDateKey,
+	OrderQuantity,
+	UnitPrice,
+	OrderDate
+FROM 
+	FactInternetSales AS FIS
+LEFT JOIN
+	DimCustomer AS DC
+ON
+	FIS.CustomerKey = DC.CustomerKey
+WHERE
+	OrderDate >= '2014-01-01'
