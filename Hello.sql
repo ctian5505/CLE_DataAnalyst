@@ -196,11 +196,15 @@ ORDER BY
 of products sold in each month of the year 2011
 from the [dbo].[DimProduct] and
 [dbo].FactResellerSales tables. 
+
+AVG QTY
+TOTAL SALES
+MONTLY IN YEAR 2011
 */
 SELECT
 	MONTH(FRS.OrderDate) AS 'Month_no',
 	AVG(OrderQuantity) AS 'Average Quantity',
-	AVG(SalesAmount) AS 'Average Sales'
+	SUM(SalesAmount) AS 'Total Sales'
 FROM	
 	FactResellerSales AS FRS
 LEFT JOIN
